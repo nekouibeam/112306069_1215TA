@@ -1,0 +1,58 @@
+<body>
+    <h1>簡單計算機</h1>
+
+    <script>
+        operating();
+
+        function operating() {
+            var firstNum = window.prompt("Enter first Number: ");
+            while (isNotNum(firstNum)) {
+                alert('請輸入有效的數字');
+                firstNum = window.prompt("Enter first Number: ");
+            }
+
+            var secNum = window.prompt("Enter second Number: ");
+            while (isNotNum(secNum)) {
+                alert('請輸入有效的數字');
+                secNum = window.prompt("Enter second Number: ");
+            }
+
+            var operator = window.prompt("Select operator (+, -, *, /) ");
+            calculate(parseFloat(firstNum), parseFloat(secNum), operator);
+            operating();
+        }
+
+        function isNotNum(value) {
+            return isNaN(parseFloat(value));
+        }
+
+        function calculate(firstNum, secNum, operator) {
+
+            // 執行相應的操作
+            switch (operator) {
+                case '+':
+                    alert('結果: ' + (firstNum + secNum));
+                    break;
+                case '-':
+                    alert('結果: ' + (firstNum - secNum));
+                    break;
+                case '*':
+                    alert('結果: ' + (firstNum * secNum));
+                    break;
+                case '/':
+                    // 檢查除數是否為零
+                    if (secNum === 0) {
+                        alert('除數不能為零');
+                        operating(); // 重新輸入
+                        return;
+                    }
+                    alert('結果: ' + (firstNum / secNum));
+                    break;
+                default:
+                    alert('無效的操作');
+                    operating(); // 重新輸入
+                    return;
+            }
+        }
+    </script>
+</body>
